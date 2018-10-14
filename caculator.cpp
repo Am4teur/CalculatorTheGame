@@ -1,4 +1,4 @@
-/* Calculator The Game - solution */
+/* Calculator The Game - Solution */
 
 #include <cstdlib>
 #include <iostream>
