@@ -16,9 +16,17 @@
 #include <map>
 #include <cstdio>
 #include <ctime>
+#include <windows.h> //Sleep(miliseconds) function
 
 using namespace std;
 
+void theGame();
+
+void incorrectMessage();
+
+void endMessage();
+
+void menuMessage();
 
 vector<string> StringToVectorString(string theString, char separator);
 
@@ -32,49 +40,89 @@ void findAndReplaceAll(string & data, string toSearch, string replaceStr);
 
 
 int main(){
+  string optionStr;
+  int option;
+  bool next = true;
 
+  while(next){
+    menuMessage();
+
+    getline(cin, optionStr);
+    cout << "\n";
+
+    try{
+      option = stoi(optionStr);
+    } catch(std::invalid_argument& e){
+      incorrectMessage();
+    }
+
+    switch(option){
+      case 1:
+        theGame();
+        break;
+      case 2:
+        endMessage();
+        next = false;
+        break;
+      default:
+        incorrectMessage();
+        break;
+    }
+  }
+  return 0;
+}
+
+void incorrectMessage(){
+  cout << "+---------------------+\n";
+  cout << "|  Incorrect answer!  |\n";
+  cout << "+---------------------+\n";
+  Sleep(2000);
+}
+
+void endMessage(){
+  cout << "+--------------------+\n";
+  cout << "|  Program is Over!  |\n";
+  cout << "+--------------------+\n";
+}
+
+void menuMessage(){
+  cout << "+------------------------------------------+\n";
+  cout << "|  Option Menu:                            |\n";
+  cout << "+------------------------------------------+\n";
+  cout << "|  Start a new level .................. 1  |\n";
+  cout << "|  Exit Program ....................... 2  |\n";
+  cout << "+------------------------------------------+\n";
+  cout << "\nWhat is your option? ";
+}
+
+void theGame(){
   vector<int> vecInput1;
   vector<string> vecInput2;
   string strInput;
   char separator = ' ';
-  string answer = "y";
 
+  cout << "'Starting number' 'Goal' 'Moves'\n";
+  getline(cin, strInput);
+  vecInput1 = StringToVectorInt(strInput, separator);
 
-  while(true){
-    if(answer == "y"){
-      cout << "'Starting number' 'Goal' 'Moves'\n";
-      getline(cin, strInput);
-      vecInput1 = StringToVectorInt(strInput, separator);
+  cout << "'buttons'\n";
+  getline(cin, strInput);
+  vecInput2 = StringToVectorString(strInput, separator);
 
-      cout << "'buttons'\n";
-      getline(cin, strInput);
-      vecInput2 = StringToVectorString(strInput, separator);
+  vector<string> vecFinal;
+  vecFinal = Calculate(vecInput1, vecInput2);
 
-      vector<string> vecFinal;
-      //cout << "passei\n";
-      vecFinal = Calculate(vecInput1, vecInput2);
-      //cout << "passei\n";
-
-      if(!(vecFinal[0] == "0")){
-        int sizeVecFinal = vecFinal.size();
-        cout << "Sequence: ";
-        for(int i = 0; i < sizeVecFinal ; i++){
-          cout << vecFinal[i] << " | ";
-        }
-      }
-
-      cout << "\nDo you want to continue? (y = yes | n = no)\n";
+  if(vecFinal[0] != "No result"){
+    int sizeVecFinal = vecFinal.size();
+    cout << "Sequence: | ";
+    for(int i = 0; i < sizeVecFinal ; i++){
+      cout << vecFinal[i] << " | ";
     }
-    else if(answer == "n"){
-      break;
-    }
-    else{
-      cout << "Incorrect answer! (y = yes | n = no)\n";
-    }
-    getline(cin, answer);
+    cout << "\n";
   }
-
-  return 0;
+  else{
+    cout << "We didnt found any solution :(\n";
+  }
 }
 
 
@@ -243,15 +291,12 @@ vector<string> Calculate(vector<int> vecInt, vector<string> vecStr){
     }
   }
 
-  cout << "We didnt found any solution :(\n";
-  hipot[0] = "0";
+  hipot[0] = "No result";
   return hipot;
 }
 
 int CalculateVector(int initial, vector<string> vecStr){
   int res = initial;
-
-
 
   int sizeVecStr = vecStr.size();
   for(int i = 0; i < sizeVecStr; i++){
