@@ -149,7 +149,7 @@ vector<int> StringToVectorInt(string theString, char separator){
 vector<string> Calculate(vector<int> vecInt, vector<string> vecStr){
   vector<string> hipot(vecInt[2]);
   int sizeVecStr = vecStr.size();
-  int j = 0;
+  int count = 0;
 
   if(vecInt[2] == 3){
     for(int i0 = 0; i0 < sizeVecStr ; i0++){
@@ -158,7 +158,7 @@ vector<string> Calculate(vector<int> vecInt, vector<string> vecStr){
         hipot[1] = vecStr[i1];
         for(int i2 = 0; i2 < sizeVecStr ; i2++){
           hipot[2] = vecStr[i2];
-          cout << j++ << " : " << CalculateVector(vecInt[0], hipot) << "\n";
+          cout << count++ << " : " << CalculateVector(vecInt[0], hipot) << "\n";
           if(CalculateVector(vecInt[0], hipot) == vecInt[1])
             return hipot;
         }
@@ -175,7 +175,7 @@ vector<string> Calculate(vector<int> vecInt, vector<string> vecStr){
           hipot[2] = vecStr[i2];
           for(int i3 = 0; i3 < sizeVecStr ; i3++){
             hipot[3] = vecStr[i3];
-            cout << j++ << " : " << CalculateVector(vecInt[0], hipot) << "\n";
+            cout << count++ << " : " << CalculateVector(vecInt[0], hipot) << "\n";
             if(CalculateVector(vecInt[0], hipot) == vecInt[1])
               return hipot;
           }
@@ -195,7 +195,7 @@ vector<string> Calculate(vector<int> vecInt, vector<string> vecStr){
             hipot[3] = vecStr[i3];
             for(int i4 = 0; i4 < sizeVecStr ; i4++){
               hipot[4] = vecStr[i4];
-              cout << j++ << " : " << CalculateVector(vecInt[0], hipot) << "\n";
+              cout << count++ << " : " << CalculateVector(vecInt[0], hipot) << "\n";
               if(CalculateVector(vecInt[0], hipot) == vecInt[1])
                 return hipot;
             }
@@ -218,12 +218,7 @@ vector<string> Calculate(vector<int> vecInt, vector<string> vecStr){
               hipot[4] = vecStr[i4];
               for(int i5 = 0; i5 < sizeVecStr ; i5++){
                 hipot[5] = vecStr[i5];
-                if(j==604){
-                  for(int i = 0; i < hipot.size() ; i++){
-                    cout << hipot[i] << " | ";
-                  }
-                }
-                cout << j++ << " : " << CalculateVector(vecInt[0], hipot) << "\n";
+                cout << count++ << " : " << CalculateVector(vecInt[0], hipot) << "\n";
                 if(CalculateVector(vecInt[0], hipot) == vecInt[1])
                   return hipot;
               }
@@ -249,7 +244,7 @@ vector<string> Calculate(vector<int> vecInt, vector<string> vecStr){
                 hipot[5] = vecStr[i5];
                 for(int i6 = 0; i6 < sizeVecStr ; i6++){
                   hipot[6] = vecStr[i6];
-                  cout << j++ << " : " << CalculateVector(vecInt[0], hipot) << "\n";
+                  cout << count++ << " : " << CalculateVector(vecInt[0], hipot) << "\n";
                   if(CalculateVector(vecInt[0], hipot) == vecInt[1])
                     return hipot;
                 }
@@ -278,7 +273,7 @@ vector<string> Calculate(vector<int> vecInt, vector<string> vecStr){
                   hipot[6] = vecStr[i6];
                   for(int i7 = 0; i7 < sizeVecStr ; i7++){
                     hipot[7] = vecStr[i7];
-                    cout << j++ << " : " << CalculateVector(vecInt[0], hipot) << "\n";
+                    cout << count++ << " : " << CalculateVector(vecInt[0], hipot) << "\n";
                     if(CalculateVector(vecInt[0], hipot) == vecInt[1])
                       return hipot;
                   }
@@ -297,8 +292,8 @@ vector<string> Calculate(vector<int> vecInt, vector<string> vecStr){
 
 int CalculateVector(int initial, vector<string> vecStr){
   int res = initial;
-
   int sizeVecStr = vecStr.size();
+
   for(int i = 0; i < sizeVecStr; i++){
     string s = vecStr[i];
     if(res == -9999999)
