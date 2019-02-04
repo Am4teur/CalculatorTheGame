@@ -1,20 +1,20 @@
 /* Calculator The Game - Solution */
 
 #include <cstdlib>
+#include <cstdio>
 #include <iostream>
 #include <vector>
 #include <string>
 #include <sstream>
-#include <limits>
-#include <numeric>
-#include <stack>
-#include <set>
+//#include <limits>
+//#include <numeric>
+//#include <stack>
+//#include <set>
 #include <cmath>
-#include <list>
-#include <queue>
+//#include <list>
+//#include <queue>
 #include <algorithm>
-#include <map>
-#include <cstdio>
+//#include <map>
 #include <ctime>
 #include <windows.h> //Sleep(miliseconds) function
 
@@ -114,11 +114,12 @@ void theGame(){
 
   if(vecFinal[0] != "No result"){
     int sizeVecFinal = vecFinal.size();
-    cout << "Sequence: | ";
+    cout << "Solution: | ";
     for(int i = 0; i < sizeVecFinal ; i++){
       cout << vecFinal[i] << " | ";
     }
     cout << "\n";
+    Sleep(2000);
   }
   else{
     cout << "We didnt found any solution :(\n";
